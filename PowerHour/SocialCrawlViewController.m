@@ -45,8 +45,10 @@
     } if ([segue.identifier isEqualToString:@"roundRobin"]) {
         viewController.gameMode = kRoundRobinMode;
         viewController.title = @"Cooperative Mode";
-        viewController.roundTimerLength = 15;
-        viewController.countdownLength = 7;
+//        viewController.roundTimerLength = 15;
+//        viewController.countdownLength = 7;
+        viewController.roundTimerLength = 5;
+        viewController.countdownLength = 3;
         viewController.numberOfRounds = 50;
         viewController.gameDifficulty = 1;
     } if ([segue.identifier isEqualToString:@"minigame"]) {

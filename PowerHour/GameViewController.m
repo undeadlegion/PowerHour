@@ -71,15 +71,12 @@
     Player *player2 = [Player playerWithName:@"Kevin" color:[UIColor blueColor]];
     Player *player3 = [Player playerWithName:@"Colin" color:[UIColor greenColor]];
     Player *player4 = [Player playerWithName:@"Jamie" color:[UIColor orangeColor]];
-    
-    [self.players addObjectsFromArray:@[ player2, player3, player4]];
+    Player *player5 = [Player playerWithName:@"Dana" color:[UIColor brownColor]];
+    Player *player6 = [Player playerWithName:@"Chris" color:[UIColor yellowColor]];
+    Player *player7 = [Player playerWithName:@"Justin" color:[UIColor redColor]];
+    [self.players addObjectsFromArray:@[ player2, player3, player4, player5, player6, player7]];
     self.currentPlayer = player2;
     self.gameView.currentPlayer = self.currentPlayer;
-    [self randomizeNextPlayers];
-}
-
-- (void)randomizeNextPlayers {
-    [self.nextPlayers addObjectsFromArray:self.players];
 }
 
 - (void)endGame {
@@ -147,7 +144,8 @@
     if (self.gameMode == kRoundRobinMode) {
         NSInteger playerIndex = arc4random()%([self.nextPlayers count]);
         self.currentPlayer = [self.nextPlayers objectAtIndex:playerIndex];
-        [self.nextPlayers removeObject:self.currentPlayer];
+        [self.nextPlayers removeObjectAtIndex:playerIndex];
+        self.gameView.currentPlayer = self.currentPlayer;
         
     } else if (self.gameMode == kMinigameMode) {
         NSInteger playerIndex = [self.players indexOfObject:self.currentPlayer];
@@ -166,13 +164,8 @@
 }
 
 - (void)updateUI {
-
-    
     // view did load
-    
     // game over
-
-    
 }
 - (void)startGame{
     NSLog(@"Start Game");
@@ -336,7 +329,4 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-
-
 @end
