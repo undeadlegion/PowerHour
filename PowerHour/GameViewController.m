@@ -71,10 +71,9 @@
     Player *player2 = [Player playerWithName:@"Kevin" color:[UIColor blueColor]];
     Player *player3 = [Player playerWithName:@"Colin" color:[UIColor greenColor]];
     Player *player4 = [Player playerWithName:@"Jamie" color:[UIColor orangeColor]];
-    Player *player5 = [Player playerWithName:@"Dana" color:[UIColor brownColor]];
-    Player *player6 = [Player playerWithName:@"Chris" color:[UIColor yellowColor]];
-    Player *player7 = [Player playerWithName:@"Justin" color:[UIColor redColor]];
-    [self.players addObjectsFromArray:@[ player2, player3, player4, player5, player6, player7]];
+    Player *player5 = [Player playerWithName:@"Chris" color:[UIColor yellowColor]];
+    Player *player6 = [Player playerWithName:@"Shiloh" color:[UIColor redColor]];
+    [self.players addObjectsFromArray:@[ player2, player3, player4, player5, player6]];
     self.currentPlayer = player2;
     self.gameView.currentPlayer = self.currentPlayer;
 }

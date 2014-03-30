@@ -38,25 +38,25 @@
     } if ([segue.identifier isEqualToString:@"roulette"]) {
         viewController.gameMode = kRouletteMode;
         viewController.title = @"Roulette Mode";
-        viewController.roundTimerLength = 10;
+        viewController.roundTimerLength = 9;
         viewController.countdownLength = 7;
-        viewController.numberOfRounds = 80;
+        viewController.numberOfRounds = 90;
         viewController.gameDifficulty = 1;
     } if ([segue.identifier isEqualToString:@"roundRobin"]) {
         viewController.gameMode = kRoundRobinMode;
         viewController.title = @"Cooperative Mode";
 //        viewController.roundTimerLength = 15;
 //        viewController.countdownLength = 7;
-        viewController.roundTimerLength = 5;
-        viewController.countdownLength = 3;
-        viewController.numberOfRounds = 50;
+        viewController.roundTimerLength = 9;
+        viewController.countdownLength = 9;
+        viewController.numberOfRounds = 90;
         viewController.gameDifficulty = 1;
     } if ([segue.identifier isEqualToString:@"minigame"]) {
         viewController.gameMode = kMinigameMode;
         viewController.title = @"Minigame Mode";
-        viewController.roundTimerLength = 4;
-        viewController.countdownLength = 4;
-        viewController.numberOfRounds = 30;
+        viewController.roundTimerLength = 9;
+        viewController.countdownLength = 9;
+        viewController.numberOfRounds = 90;
         viewController.gameDifficulty = .3;
     }
 }
