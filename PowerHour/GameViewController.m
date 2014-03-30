@@ -35,6 +35,12 @@
     }
     return _players;
 }
+- (NSMutableArray *)nextPlayers {
+    if (!_nextPlayers) {
+        _nextPlayers = [[NSMutableArray alloc] init];
+    }
+    return _nextPlayers;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,8 +58,8 @@
     self.scoreLabel.textColor = [UIColor blackColor];
     self.roundLabel.textColor = [UIColor blackColor];
     self.scoreLabel.text = [NSString stringWithFormat:@"%d", 0];
-    self.lastRoundLabel.text = [NSString stringWithFormat:@"/%d", self.numberOfRounds];
-    self.timerLabel.text = [NSString stringWithFormat:@"%d:00", self.roundTimerLength];
+    self.lastRoundLabel.text = [NSString stringWithFormat:@"/%zd", self.numberOfRounds];
+    self.timerLabel.text = [NSString stringWithFormat:@"%zd:00", self.roundTimerLength];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,6 +75,11 @@
     [self.players addObjectsFromArray:@[ player2, player3, player4]];
     self.currentPlayer = player2;
     self.gameView.currentPlayer = self.currentPlayer;
+    [self randomizeNextPlayers];
+}
+
+- (void)randomizeNextPlayers {
+    [self.nextPlayers addObjectsFromArray:self.players];
 }
 
 - (void)endGame {
@@ -81,10 +92,10 @@
     // reset state
     self.gameStarted = NO;
     self.gameView.gameStarted = NO;
-
-    // update UI
     self.gameView.displayUI = YES;
     self.roundNumber = 0;
+
+    // update UI
     self.roundLabel.textColor = [UIColor blackColor];
     self.scoreLabel.textColor = [UIColor blackColor];
     self.timerLabel.textColor = [UIColor blackColor];
@@ -112,9 +123,17 @@
         // was it tapped
         if ([self.gameView containsPoint:point]){
             self.currentPlayer.score++;
+            self.coopScore++;
             self.buttonTapped = YES;
             self.gameView.displayUI = NO;
-            self.scoreLabel.text = [NSString stringWithFormat:@"%d/%d", self.currentPlayer.score, self.currentPlayer.maxScore+1];
+            
+            if (self.gameMode == kRoundRobinMode) {
+                self.scoreLabel.text = [NSString stringWithFormat:@"%zd", self.coopScore];
+                self.scoreLabel.textColor = [UIColor blackColor];
+                
+            } else {
+                self.scoreLabel.text = [NSString stringWithFormat:@"%zd/%zd", self.currentPlayer.score, self.currentPlayer.maxScore+1];
+            }
             self.timerLabel.textColor = [UIColor blackColor];
             [self.vibrateTimer invalidate];
         }
@@ -122,7 +141,15 @@
 }
 
 - (void)selectNextPlayer {
-    if (self.gameMode == kRoundRobinMode || self.gameMode == kMinigameMode) {
+    if ([self.nextPlayers count] == 0) {
+        [self.nextPlayers addObjectsFromArray:self.players];
+    }
+    if (self.gameMode == kRoundRobinMode) {
+        NSInteger playerIndex = arc4random()%([self.nextPlayers count]);
+        self.currentPlayer = [self.nextPlayers objectAtIndex:playerIndex];
+        [self.nextPlayers removeObject:self.currentPlayer];
+        
+    } else if (self.gameMode == kMinigameMode) {
         NSInteger playerIndex = [self.players indexOfObject:self.currentPlayer];
         if (playerIndex + 1 == [self.players count]) {
             self.currentPlayer = self.players[0];
@@ -132,12 +159,21 @@
         self.gameView.currentPlayer = self.currentPlayer;
     } else if (self.gameMode == kRouletteMode) {
         NSInteger playerIndex = arc4random()%([self.players count]);
-        NSLog(@"Player Index:%d", playerIndex);
+        NSLog(@"Player Index:%zd", playerIndex);
         self.currentPlayer = self.players[playerIndex];
         self.gameView.currentPlayer = self.currentPlayer;
     }
 }
 
+- (void)updateUI {
+
+    
+    // view did load
+    
+    // game over
+
+    
+}
 - (void)startGame{
     NSLog(@"Start Game");
     // set state variables
@@ -147,13 +183,12 @@
     self.roundNumber = 1;
     [self setupPlayers];
     
-    // update UI
-    self.lastRoundLabel.text = [NSString stringWithFormat:@"/%d", self.numberOfRounds];
-    self.timerLabel.text = [NSString stringWithFormat:@"%d:00", self.roundTimerLength];
+    self.lastRoundLabel.text = [NSString stringWithFormat:@"/%zd", self.numberOfRounds];
+    self.timerLabel.text = [NSString stringWithFormat:@"%zd:00", self.roundTimerLength];
     self.timerLabel.textColor = [UIColor blackColor];
     if (self.gameMode == kRoundRobinMode) {
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d/%d", self.currentPlayer.score, self.currentPlayer.maxScore];
-        self.scoreLabel.textColor = self.currentPlayer.color;
+        self.scoreLabel.text = [NSString stringWithFormat:@"%zd", self.coopScore];
+        self.scoreLabel.textColor = [UIColor blackColor];
         self.roundLabel.textColor = self.currentPlayer.color;
     } else if (self.gameMode == kRouletteMode) {
         self.scoreLabel.text = @"";
@@ -210,8 +245,14 @@
     NSLog(@"start countdown");
     self.countdownStarted = YES;
     self.timerLabel.textColor = [UIColor redColor];
-    self.scoreLabel.text = [NSString stringWithFormat:@"%d/%d", (int)self.currentPlayer.score, (int)self.currentPlayer.maxScore+1];
-    self.scoreLabel.textColor = self.currentPlayer.color;
+
+    if (self.gameMode == kRoundRobinMode) {
+        self.scoreLabel.text = [NSString stringWithFormat:@"%zd", (int)self.coopScore];
+        self.scoreLabel.textColor = [UIColor blackColor];
+    } else {
+        self.scoreLabel.text = [NSString stringWithFormat:@"%d/%d", (int)self.currentPlayer.score, (int)self.currentPlayer.maxScore+1];
+        self.scoreLabel.textColor = self.currentPlayer.color;
+    }
     self.roundLabel.textColor = self.currentPlayer.color;
     
     // show button
@@ -259,8 +300,8 @@
     self.timerLabel.textColor = [UIColor blackColor];
     
     if (self.gameMode == kRoundRobinMode) {
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d/%d", self.currentPlayer.score, self.currentPlayer.maxScore];
-        self.scoreLabel.textColor = self.currentPlayer.color;
+        self.scoreLabel.text = [NSString stringWithFormat:@"%d", (int)self.coopScore];
+        self.scoreLabel.textColor = [UIColor blackColor];
         self.roundLabel.textColor = self.currentPlayer.color;
     } else if (self.gameMode == kRouletteMode) {
         self.scoreLabel.text = @"";

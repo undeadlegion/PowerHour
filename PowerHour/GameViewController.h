@@ -26,6 +26,7 @@
 @property (assign, nonatomic) NSInteger timeUntilCountdown;
 @property (assign, nonatomic) NSInteger numberOfRounds;
 @property (assign, nonatomic) double gameDifficulty;
+@property (assign, nonatomic) NSInteger coopScore;
 
 
 @property (strong, nonatomic) UITapGestureRecognizer *singleTap;
@@ -54,6 +55,7 @@
 
 @property (strong, nonatomic) NSMutableArray *players;
 @property (strong, nonatomic) Player *currentPlayer;
+@property (strong, nonatomic) NSMutableArray *nextPlayers;
 - (IBAction)exit:(id)sender;
 
 - (id)init; 
