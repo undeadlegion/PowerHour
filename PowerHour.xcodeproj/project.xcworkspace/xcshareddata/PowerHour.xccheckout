@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F49CBE4A-A392-499D-9DAA-5AE9AC9DFF65</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PowerHour</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9FDD5D80-627D-4967-BE7F-7E0B03EAC866</key>
+		<string>ssh://github.com/undeadlegion/PowerHour.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PowerHour.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9FDD5D80-627D-4967-BE7F-7E0B03EAC866</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/undeadlegion/PowerHour.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9FDD5D80-627D-4967-BE7F-7E0B03EAC866</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9FDD5D80-627D-4967-BE7F-7E0B03EAC866</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PowerHour</string>
+		</dict>
+	</array>
+</dict>
+</plist>
