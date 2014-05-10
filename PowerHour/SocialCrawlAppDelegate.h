@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface SocialCrawlAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) NSMutableArray *players;
 @end

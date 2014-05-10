@@ -17,7 +17,7 @@
 
 #define kClassicMode    0
 #define kRouletteMode 1
-#define kRoundRobinMode 2
+#define kCooperativeMode 2
 #define kMinigameMode   3
 
 // game variables
@@ -43,6 +43,8 @@
 @property (assign, nonatomic) BOOL countdownStarted;
 @property (assign, nonatomic) BOOL buttonTapped;
 @property (copy, nonatomic) NSDate *startDate;
+@property (assign, nonatomic) SystemSoundID buttonPushedSound;
+@property (assign, nonatomic) SystemSoundID countdownStartedSound;
 
 @property (weak, nonatomic) IBOutlet GameView *gameView;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;

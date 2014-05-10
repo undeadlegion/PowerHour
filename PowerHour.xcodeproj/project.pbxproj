@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F21D075191D4F5000AEFB72 /* buttonPushed.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0F21D074191D4F5000AEFB72 /* buttonPushed.wav */; };
+		0F21D077191D88A300AEFB72 /* countdownStarted.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0F21D076191D88A300AEFB72 /* countdownStarted.wav */; };
+		0F21D07D191D936C00AEFB72 /* GameSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F21D07C191D936C00AEFB72 /* GameSettingsTableViewController.m */; };
+		0F2329BA18EF30A2009EE6C2 /* PlayerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2329B918EF30A2009EE6C2 /* PlayerTableViewCell.m */; };
 		0F459F2A18E20B470062FD85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F459F2918E20B470062FD85 /* Foundation.framework */; };
 		0F459F2C18E20B470062FD85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F459F2B18E20B470062FD85 /* CoreGraphics.framework */; };
 		0F459F2E18E20B470062FD85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F459F2D18E20B470062FD85 /* UIKit.framework */; };
@@ -24,6 +28,7 @@
 		0F459F6518E20F060062FD85 /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F459F6218E20F060062FD85 /* GameView.m */; };
 		0F459F6618E20F060062FD85 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F459F6418E20F060062FD85 /* GameViewController.m */; };
 		0F77FEC418E67A92002F1471 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F77FEC318E67A92002F1471 /* Images.xcassets */; };
+		0FA1E5C518EF1EEA004F3222 /* AddPlayerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1E5C418EF1EEA004F3222 /* AddPlayerTableViewController.m */; };
 		0FB9AF3018E4895300B41D20 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB9AF2F18E4895300B41D20 /* Player.m */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F21D074191D4F5000AEFB72 /* buttonPushed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buttonPushed.wav; sourceTree = "<group>"; };
+		0F21D076191D88A300AEFB72 /* countdownStarted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = countdownStarted.wav; sourceTree = "<group>"; };
+		0F21D07B191D936C00AEFB72 /* GameSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingsTableViewController.h; sourceTree = "<group>"; };
+		0F21D07C191D936C00AEFB72 /* GameSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingsTableViewController.m; sourceTree = "<group>"; };
+		0F2329B818EF30A2009EE6C2 /* PlayerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTableViewCell.h; sourceTree = "<group>"; };
+		0F2329B918EF30A2009EE6C2 /* PlayerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTableViewCell.m; sourceTree = "<group>"; };
 		0F459F2618E20B470062FD85 /* PowerHour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PowerHour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F459F2918E20B470062FD85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0F459F2B18E20B470062FD85 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,6 +73,8 @@
 		0F459F6318E20F060062FD85 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		0F459F6418E20F060062FD85 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		0F77FEC318E67A92002F1471 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0FA1E5C318EF1EEA004F3222 /* AddPlayerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlayerTableViewController.h; sourceTree = "<group>"; };
+		0FA1E5C418EF1EEA004F3222 /* AddPlayerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlayerTableViewController.m; sourceTree = "<group>"; };
 		0FB9AF2E18E4895300B41D20 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		0FB9AF2F18E4895300B41D20 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,16 +138,22 @@
 			children = (
 				0F459F3818E20B470062FD85 /* SocialCrawlAppDelegate.h */,
 				0F459F3918E20B470062FD85 /* SocialCrawlAppDelegate.m */,
-				0F459F6118E20F060062FD85 /* GameView.h */,
-				0F459F6218E20F060062FD85 /* GameView.m */,
 				0F459F6318E20F060062FD85 /* GameViewController.h */,
 				0F459F6418E20F060062FD85 /* GameViewController.m */,
-				0FB9AF2E18E4895300B41D20 /* Player.h */,
-				0FB9AF2F18E4895300B41D20 /* Player.m */,
+				0F459F6118E20F060062FD85 /* GameView.h */,
+				0F459F6218E20F060062FD85 /* GameView.m */,
+				0FA1E5C318EF1EEA004F3222 /* AddPlayerTableViewController.h */,
+				0FA1E5C418EF1EEA004F3222 /* AddPlayerTableViewController.m */,
+				0F21D07B191D936C00AEFB72 /* GameSettingsTableViewController.h */,
+				0F21D07C191D936C00AEFB72 /* GameSettingsTableViewController.m */,
 				0F459F3B18E20B470062FD85 /* Main_iPhone.storyboard */,
 				0F459F3E18E20B470062FD85 /* Main_iPad.storyboard */,
 				0F459F4118E20B470062FD85 /* SocialCrawlViewController.h */,
 				0F459F4218E20B470062FD85 /* SocialCrawlViewController.m */,
+				0FB9AF2E18E4895300B41D20 /* Player.h */,
+				0FB9AF2F18E4895300B41D20 /* Player.m */,
+				0F2329B818EF30A2009EE6C2 /* PlayerTableViewCell.h */,
+				0F2329B918EF30A2009EE6C2 /* PlayerTableViewCell.m */,
 				0F77FEC318E67A92002F1471 /* Images.xcassets */,
 				0F459F3018E20B470062FD85 /* Supporting Files */,
 			);
@@ -144,6 +163,8 @@
 		0F459F3018E20B470062FD85 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0F21D074191D4F5000AEFB72 /* buttonPushed.wav */,
+				0F21D076191D88A300AEFB72 /* countdownStarted.wav */,
 				0F459F3118E20B470062FD85 /* PowerHour-Info.plist */,
 				0F459F3218E20B470062FD85 /* InfoPlist.strings */,
 				0F459F3518E20B470062FD85 /* main.m */,
@@ -252,6 +273,8 @@
 			files = (
 				0F459F4018E20B470062FD85 /* Main_iPad.storyboard in Resources */,
 				0F77FEC418E67A92002F1471 /* Images.xcassets in Resources */,
+				0F21D077191D88A300AEFB72 /* countdownStarted.wav in Resources */,
+				0F21D075191D4F5000AEFB72 /* buttonPushed.wav in Resources */,
 				0F459F3D18E20B470062FD85 /* Main_iPhone.storyboard in Resources */,
 				0F459F3418E20B470062FD85 /* InfoPlist.strings in Resources */,
 			);
@@ -272,12 +295,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F2329BA18EF30A2009EE6C2 /* PlayerTableViewCell.m in Sources */,
 				0F459F6618E20F060062FD85 /* GameViewController.m in Sources */,
 				0F459F4318E20B470062FD85 /* SocialCrawlViewController.m in Sources */,
 				0F459F3618E20B470062FD85 /* main.m in Sources */,
 				0F459F6518E20F060062FD85 /* GameView.m in Sources */,
 				0FB9AF3018E4895300B41D20 /* Player.m in Sources */,
+				0FA1E5C518EF1EEA004F3222 /* AddPlayerTableViewController.m in Sources */,
 				0F459F3A18E20B470062FD85 /* SocialCrawlAppDelegate.m in Sources */,
+				0F21D07D191D936C00AEFB72 /* GameSettingsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

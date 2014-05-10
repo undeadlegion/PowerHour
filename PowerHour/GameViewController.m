@@ -9,6 +9,7 @@
 #import "GameViewController.h"
 #import "GameView.h"
 #import "Player.h"
+#import "SocialCrawlAppDelegate.h"
 
 #define kGameTimerLength .01
 
@@ -31,7 +32,8 @@
 
 - (NSMutableArray *)players {
     if (!_players) {
-        _players = [[NSMutableArray alloc] init];
+        SocialCrawlAppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        _players = delegate.players;
     }
     return _players;
 }
@@ -55,6 +57,15 @@
     self.roundNumber = 0;
     self.timeUntilCountdown = self.roundTimerLength - self.countdownLength;
 
+    // load sound files
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"buttonPushed" ofType:@"wav"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)(url), &_buttonPushedSound);
+    
+    path = [[NSBundle mainBundle] pathForResource:@"countdownStarted" ofType:@"wav"];
+    url = [NSURL fileURLWithPath:path];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)(url), &_countdownStartedSound);
+    
     self.scoreLabel.textColor = [UIColor blackColor];
     self.roundLabel.textColor = [UIColor blackColor];
     self.scoreLabel.text = [NSString stringWithFormat:@"%d", 0];
@@ -67,15 +78,17 @@
 }
 
 - (void)setupPlayers {
-//    Player *player1 = [Player playerWithName:@"Erin" color:[UIColor magentaColor]];
-    Player *player2 = [Player playerWithName:@"Kevin" color:[UIColor blueColor]];
-    Player *player3 = [Player playerWithName:@"Colin" color:[UIColor greenColor]];
-    Player *player4 = [Player playerWithName:@"Jamie" color:[UIColor orangeColor]];
-    Player *player5 = [Player playerWithName:@"Chris" color:[UIColor yellowColor]];
-    Player *player6 = [Player playerWithName:@"Shiloh" color:[UIColor redColor]];
-    [self.players addObjectsFromArray:@[ player2, player3, player4, player5, player6]];
-    self.currentPlayer = player2;
-    self.gameView.currentPlayer = self.currentPlayer;
+    if ([self.players count] == 0) {
+        Player *player1 = [Player playerWithName:@"Erin" color:[UIColor magentaColor]];
+        Player *player2 = [Player playerWithName:@"Kevin" color:[UIColor blueColor]];
+        Player *player3 = [Player playerWithName:@"Colin" color:[UIColor greenColor]];
+        Player *player4 = [Player playerWithName:@"Jamie" color:[UIColor orangeColor]];
+        Player *player5 = [Player playerWithName:@"Chris" color:[UIColor yellowColor]];
+        Player *player6 = [Player playerWithName:@"Shiloh" color:[UIColor redColor]];
+        [self.players addObjectsFromArray:@[player1, player2, player3, player4, player5, player6]];
+    }
+    self.currentPlayer = self.players[0];
+    self.gameView.currentPlayer = self.players[0];
 }
 
 - (void)endGame {
@@ -118,12 +131,20 @@
         CGPoint point = [self.singleTap locationInView:self.gameView];
         // was it tapped
         if ([self.gameView containsPoint:point]){
+            // play sound
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                AudioServicesPlaySystemSound(self.buttonPushedSound);
+            });
+
+            // update state
             self.currentPlayer.score++;
             self.coopScore++;
             self.buttonTapped = YES;
             self.gameView.displayUI = NO;
+            [self.vibrateTimer invalidate];
             
-            if (self.gameMode == kRoundRobinMode) {
+            // update UI
+            if (self.gameMode == kCooperativeMode) {
                 self.scoreLabel.text = [NSString stringWithFormat:@"%zd", self.coopScore];
                 self.scoreLabel.textColor = [UIColor blackColor];
                 
@@ -131,7 +152,6 @@
                 self.scoreLabel.text = [NSString stringWithFormat:@"%zd/%zd", self.currentPlayer.score, self.currentPlayer.maxScore+1];
             }
             self.timerLabel.textColor = [UIColor blackColor];
-            [self.vibrateTimer invalidate];
         }
     }
 }
@@ -140,7 +160,7 @@
     if ([self.nextPlayers count] == 0) {
         [self.nextPlayers addObjectsFromArray:self.players];
     }
-    if (self.gameMode == kRoundRobinMode) {
+    if (self.gameMode == kCooperativeMode) {
         NSInteger playerIndex = arc4random()%([self.nextPlayers count]);
         self.currentPlayer = [self.nextPlayers objectAtIndex:playerIndex];
         [self.nextPlayers removeObjectAtIndex:playerIndex];
@@ -178,7 +198,7 @@
     self.lastRoundLabel.text = [NSString stringWithFormat:@"/%zd", self.numberOfRounds];
     self.timerLabel.text = [NSString stringWithFormat:@"%zd:00", self.roundTimerLength];
     self.timerLabel.textColor = [UIColor blackColor];
-    if (self.gameMode == kRoundRobinMode) {
+    if (self.gameMode == kCooperativeMode) {
         self.scoreLabel.text = [NSString stringWithFormat:@"%zd", self.coopScore];
         self.scoreLabel.textColor = [UIColor blackColor];
         self.roundLabel.textColor = self.currentPlayer.color;
@@ -235,10 +255,14 @@
 
 - (void)startCountdown {
     NSLog(@"start countdown");
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        AudioServicesPlaySystemSound(self.countdownStartedSound);
+    });
+    
     self.countdownStarted = YES;
     self.timerLabel.textColor = [UIColor redColor];
 
-    if (self.gameMode == kRoundRobinMode) {
+    if (self.gameMode == kCooperativeMode) {
         self.scoreLabel.text = [NSString stringWithFormat:@"%zd", (int)self.coopScore];
         self.scoreLabel.textColor = [UIColor blackColor];
     } else {
@@ -291,7 +315,7 @@
     self.gameView.displayUI = NO;
     self.timerLabel.textColor = [UIColor blackColor];
     
-    if (self.gameMode == kRoundRobinMode) {
+    if (self.gameMode == kCooperativeMode) {
         self.scoreLabel.text = [NSString stringWithFormat:@"%d", (int)self.coopScore];
         self.scoreLabel.textColor = [UIColor blackColor];
         self.roundLabel.textColor = self.currentPlayer.color;

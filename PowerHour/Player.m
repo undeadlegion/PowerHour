@@ -12,8 +12,8 @@
 
 + (Player *)playerWithName:(NSString *)name color:(UIColor *)color {
     Player *newPlayer = [[Player alloc] init];
-    newPlayer.playerName = name;
-    newPlayer.playerColor = color;
+    newPlayer.name = name;
+    newPlayer.color = color;
     newPlayer.score = 0;
     newPlayer.maxScore = 0;
     return newPlayer;

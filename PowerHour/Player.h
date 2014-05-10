@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface Player : NSObject
-@property (copy, nonatomic, getter = color) UIColor *playerColor;
-@property (copy, nonatomic, getter = name) NSString *playerName;
+@property (copy, nonatomic) UIColor *color;
+@property (copy, nonatomic) NSString *name;
 @property (assign, nonatomic) NSInteger score;
 @property (assign, nonatomic) NSInteger maxScore;
 + (Player *)playerWithName:(NSString *)name color:(UIColor *)color;

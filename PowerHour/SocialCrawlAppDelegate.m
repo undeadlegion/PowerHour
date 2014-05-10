@@ -7,8 +7,20 @@
 //
 
 #import "SocialCrawlAppDelegate.h"
+#import "SocialCrawlViewController.h"
+#import "Player.h"
 
 @implementation SocialCrawlAppDelegate
+
+- (NSMutableArray *)players
+{
+    if (!_players) {
+        _players = [[NSMutableArray alloc] init];
+        Player *playerOne = [Player playerWithName:@"Player 1" color:[UIColor redColor]];
+        [_players addObject:playerOne];
+    }
+    return _players;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

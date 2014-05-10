@@ -8,9 +8,10 @@
 
 #import "SocialCrawlViewController.h"
 #import "GameViewController.h"
+#import "AddPlayerTableViewController.h"
 
 @interface SocialCrawlViewController ()
-
+@property (strong, nonatomic)AddPlayerTableViewController *viewController;
 @end
 
 @implementation SocialCrawlViewController
@@ -27,37 +28,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    GameViewController *viewController = segue.destinationViewController;
+     self.viewController = segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"classic"]) {
-        viewController.gameMode = kClassicMode;
-        viewController.title = @"Classic Mode";
-        viewController.roundTimerLength = 60;
-        viewController.countdownLength = 10;
-        viewController.numberOfRounds = 60;
-        viewController.gameDifficulty = 1;
+        self.viewController.gameMode = kClassicMode;
     } if ([segue.identifier isEqualToString:@"roulette"]) {
-        viewController.gameMode = kRouletteMode;
-        viewController.title = @"Roulette Mode";
-        viewController.roundTimerLength = 9;
-        viewController.countdownLength = 7;
-        viewController.numberOfRounds = 90;
-        viewController.gameDifficulty = 1;
-    } if ([segue.identifier isEqualToString:@"roundRobin"]) {
-        viewController.gameMode = kRoundRobinMode;
-        viewController.title = @"Cooperative Mode";
-//        viewController.roundTimerLength = 15;
-//        viewController.countdownLength = 7;
-        viewController.roundTimerLength = 9;
-        viewController.countdownLength = 9;
-        viewController.numberOfRounds = 90;
-        viewController.gameDifficulty = 1;
+        self.viewController.gameMode = kRouletteMode;
+    } if ([segue.identifier isEqualToString:@"cooperative"]) {
+        self.viewController.gameMode = kCooperativeMode;
     } if ([segue.identifier isEqualToString:@"minigame"]) {
-        viewController.gameMode = kMinigameMode;
-        viewController.title = @"Minigame Mode";
-        viewController.roundTimerLength = 9;
-        viewController.countdownLength = 9;
-        viewController.numberOfRounds = 90;
-        viewController.gameDifficulty = .3;
+        self.viewController.gameMode = kMinigameMode;
     }
 }
 @end
